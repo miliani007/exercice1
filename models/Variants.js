@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const variantSchema = mongoose.Schema({
     sku: {
-        type: String
+        type: String,
+        unique: true
     },
     specification:{
         type: String
@@ -11,7 +12,7 @@ const variantSchema = mongoose.Schema({
         type: Number
     }
 }, {
-    timestamps: true
+    timestamps: false
 })
 
-module.exports = mongoose.model('Variant', variantSchema);
+module.exports = variantSchema

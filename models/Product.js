@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const variantSchema = require('./Variants')
 
 const productSchema = mongoose.Schema({
     reference: {
-        type: String
+        type: String,
+        unique: true
     },
     name:{
         type: String
@@ -13,12 +15,9 @@ const productSchema = mongoose.Schema({
     image: {
         type: String
     },
-    variants: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Variant'
-    } 
+    variants: [variantSchema]
 }, {
-    timestamps: true
+    timestamps: false
 })
 
 module.exports = mongoose.model('Product', productSchema);

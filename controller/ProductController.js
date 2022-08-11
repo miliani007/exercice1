@@ -11,7 +11,7 @@ const getProducts = async (req, res) => {
 
 const getProduct = async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id)
+        const product = await Product.findById(req.params.product_id)
         res.status(200).json(product)
     } catch (error) {
         res.status(404);
@@ -29,7 +29,7 @@ const setProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-        const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        const product = await Product.findByIdAndUpdate(req.params.product_id, req.body, {
             new: true
         })
         res.status(200).json(product);
@@ -40,8 +40,9 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     try {
-        const product = await Product.findByIdAndDelete(req.params.id)
+        const product = await Product.findByIdAndDelete(req.params.product_id)
         res.status(204);
+        res.end();
     } catch (error) {
         res.status(404)
     }
